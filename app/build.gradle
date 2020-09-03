@@ -3,8 +3,6 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
 
-
-
     defaultConfig {
         applicationId "cc.brainbook.viewpager.viewpagerbanner"
         minSdkVersion 15
@@ -34,5 +32,5 @@ dependencies {
     implementation project(':viewpagerbanner')
 
     implementation 'com.github.yongtiger:android-LoopPagerAdapter:v2.0.0'
-    implementation 'com.github.yongtiger:android-ViewPagerTransformer:v2.0.0'
+    implementation 'com.github.yongtiger:android-ViewPagerTransformer:v2.0.1'
 }
