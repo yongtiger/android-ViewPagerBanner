@@ -14,8 +14,6 @@ import android.widget.RelativeLayout;
 
 import java.lang.ref.WeakReference;
 
-import static cc.brainbook.viewpager.viewpagerbanner.BuildConfig.DEBUG;
-
 /**
  * Description.
  *
@@ -40,11 +38,6 @@ public class ViewPagerBanner extends RelativeLayout {
 
     public ViewPagerBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context);
-    }
-
-    public ViewPagerBanner(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         initView(context);
     }
 
@@ -99,7 +92,7 @@ public class ViewPagerBanner extends RelativeLayout {
         mAutoPlayEnableTouch = false;
     }
 
-    private BannerHandler mBannerHandler = new BannerHandler(this);
+    private final BannerHandler mBannerHandler = new BannerHandler(this);
 
     private static class BannerHandler extends Handler {
         private final WeakReference<ViewPagerBanner> mWeakReference;
@@ -110,19 +103,16 @@ public class ViewPagerBanner extends RelativeLayout {
 
         @Override
         public void handleMessage(Message msg) {
-            if (DEBUG) Log.d("TAG", "======================= handleMessage =======================");
             final ViewPagerBanner viewPagerBanner = mWeakReference.get();
             if (null != viewPagerBanner && viewPagerBanner.mIsAutoPlay) {
                 final ViewPager viewPager = viewPagerBanner.getViewPager();
                 if(null != viewPager.getAdapter() && 0 < viewPager.getAdapter().getCount()){    ///the number of views is 0
 
                     final int curPage = viewPager.getCurrentItem();
-                    if (DEBUG) Log.d("TAG", "-------------- curPage: " + curPage + " is time up! --------------");
                     if(null != viewPagerBanner.mOnAutoPlayTimeUpListener) {
                         viewPagerBanner.mOnAutoPlayTimeUpListener.onAutoPlayTimeUp(viewPagerBanner, curPage);
                     }
 
-                    if (DEBUG) Log.d("TAG", "handleMessage#setCurrentItem( curPage: " + curPage + ", mAutoPlayStep: " + viewPagerBanner.mAutoPlayStep + " )");
                     viewPager.setCurrentItem(curPage + viewPagerBanner.mAutoPlayStep);
 
                     ///In the case of `adapter.setCanLoop(false)`, if the view pager try to cross the border,
@@ -160,7 +150,6 @@ public class ViewPagerBanner extends RelativeLayout {
     ///不必再执行startAutoPlay()来启动轮播了
     @Override
     protected void onAttachedToWindow() {
-        if (DEBUG) Log.d("TAG", "onAttachedToWindow: ");
         if (mIsAutoPlay) {
             startAutoPlay();
         }
@@ -170,7 +159,6 @@ public class ViewPagerBanner extends RelativeLayout {
     ///返回退出时立即停止handler！否则以前还会执行两次
     @Override
     protected void onDetachedFromWindow() {
-        if (DEBUG) Log.d("TAG", "onDetachedFromWindow: ");
         mBannerHandler.removeCallbacksAndMessages(null);
         super.onDetachedFromWindow();
     }
@@ -184,7 +172,7 @@ public class ViewPagerBanner extends RelativeLayout {
      * Interface definition for a callback to be invoked when a view pager is on auto play interval of the current view.
      */
     public interface OnAutoPlayTimeUpListener {
-        void onAutoPlayTimeUp(@NonNull ViewPagerBanner container, int position);
+        void onAutoPlayTimeUp(ViewPagerBanner container, int position);
     }
 
     /**

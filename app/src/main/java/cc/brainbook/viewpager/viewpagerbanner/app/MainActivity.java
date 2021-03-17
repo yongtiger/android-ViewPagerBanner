@@ -1,6 +1,8 @@
 package cc.brainbook.viewpager.viewpagerbanner.app;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         ///test: local images and LocalImageHolderView
         ArrayList<Integer> localImages = new ArrayList<>();
         for (int position = 0; position < 2; position++) {  ///test: page numbers is 0, 1, 2,...5 or more
-            localImages.add(getResId("ic_test_" + position, R.drawable.class));
+//            localImages.add(getResId("ic_test_" + position, R.drawable.class));
+            localImages.add(getResources().getIdentifier("ic_test_" + position, "drawable", getPackageName()));
         }
         LoopPagerAdapter adapter = new LoopPagerAdapter(new ViewHolderCreator() {
             @Override
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ///test: OnStartUpdateListener
         adapter.setOnStartUpdateListener(new LoopPagerAdapter.OnStartUpdateListener() {
             @Override
-            public void onStartUpdate(ViewGroup container, int updatePosition, int updateCount) {
+            public void onStartUpdate(@NonNull ViewGroup container, int updatePosition, int updateCount) {
 //                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate: updatePosition: " + updatePosition);
 //                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate: updateCount: " + updateCount);
             }
