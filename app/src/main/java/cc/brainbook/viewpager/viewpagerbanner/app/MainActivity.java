@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         ///test: local images and LocalImageHolderView
         ArrayList<Integer> localImages = new ArrayList<>();
-        for (int position = 0; position < 2; position++) {  ///test: page numbers is 0, 1, 2,...5 or more
+        for (int position = 0; position < 5; position++) {  ///test: page numbers is 0, 1, 2,...5 or more
 //            localImages.add(getResId("ic_test_" + position, R.drawable.class));
             localImages.add(getResources().getIdentifier("ic_test_" + position, "drawable", getPackageName()));
         }
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnStartUpdateListener(new LoopPagerAdapter.OnStartUpdateListener() {
             @Override
             public void onStartUpdate(@NonNull ViewGroup container, int updatePosition, int updateCount) {
-//                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate: updatePosition: " + updatePosition);
-//                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate: updateCount: " + updateCount);
+                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate()# updatePosition: " + updatePosition);
+                Log.d("TAG", "LoopPagerAdapter.OnStartUpdateListener#onStartUpdate()# updateCount: " + updateCount);
             }
         });
 
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerBanner.setOnAutoPlayTimeUpListener(new ViewPagerBanner.OnAutoPlayTimeUpListener() {
             @Override
             public void onAutoPlayTimeUp(ViewPagerBanner container, int position) {
-                Log.d("TAG", "ViewPagerBanner.OnAutoPlayTimeUpListener#onStartUpdate: position: " + position);
+                Log.d("TAG", "ViewPagerBanner.OnAutoPlayTimeUpListener#onAutoPlayTimeUp()# position: " + position);
                 ///注意：由于Loop时，position范围为[getRealCount(), getRealCount()+getRealCount())，所以真实的position要用getRealCount()取余！
             }
         });
@@ -104,14 +104,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("TAG", "onPause: ");
+        Log.d("TAG", "onPause()#");
         viewPagerBanner.stopAutoPlay();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("TAG", "onResume: ");
+        Log.d("TAG", "onResume#");
         viewPagerBanner.startAutoPlay();
     }
 
