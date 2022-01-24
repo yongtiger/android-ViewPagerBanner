@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
+    <!--    ///[RtlViewPager]-->
+    <!--    ///https://www.16lz.com/android/khbkf.html-->
+    <!--    ///https://github.com/diego-gomez-olvera/RtlViewPager-->
+    <!--    <androidx.viewpager.widget.ViewPager-->
+    <com.booking.rtlviewpager.RtlViewPager
     android:id="@+id/viewpager"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

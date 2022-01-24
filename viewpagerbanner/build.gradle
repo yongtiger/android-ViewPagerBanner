@@ -45,4 +45,10 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
+
+    ///[RtlViewPager]
+    ///https://www.16lz.com/android/khbkf.html
+    ///https://github.com/diego-gomez-olvera/RtlViewPager
+    implementation 'com.booking:rtlviewpager:1.0.1'
+
 }
