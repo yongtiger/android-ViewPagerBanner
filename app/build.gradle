@@ -4,7 +4,7 @@ plugins {
 
 android {
     compileSdkVersion setup.compileSdk
-    buildToolsVersion setup.buildTools
+//    buildToolsVersion setup.buildTools
 
     defaultConfig {
         applicationId "cc.brainbook.viewpager.viewpagerbanner"
@@ -37,6 +37,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
 
     implementation 'com.github.yongtiger:android-LoopPagerAdapter:v2.2.0'
-    implementation 'com.github.yongtiger:android-ViewPagerTransformer:v2.2.0'
+    implementation 'com.github.yongtiger:android-ViewPagerTransformer:v2.3.0'
 
 }
